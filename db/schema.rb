@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_143314) do
     t.string "long_url"
     t.string "short"
     t.string "complete_short"
-    t.integer "click_count"
+    t.integer "click_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "base_url"

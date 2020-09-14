@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'api/v1/urls#index'
+  get "/stats", to: 'api/v1/urls#index'
   get "/:short", to: "api/v1/urls#show"
 
   namespace :api do
