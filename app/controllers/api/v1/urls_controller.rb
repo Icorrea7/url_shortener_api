@@ -8,10 +8,9 @@ class Api::V1::UrlsController < ApplicationController
         @url = Url.new(url_params)
         @url.base_url = request.base_url
         if @url.save
-            json = {"success": true, "original": @url.long_url, "short": @url.complete_short}
-            render json
+            render json: {"success": true, "original": @url.long_url, "short": @url.complete_short}, status: 200
         else
-            json = {"success": false, "original": @url.long_url}
+            render json: {"success": false, "original": @url.long_url}, status: 400
         end
       end
       def show
@@ -20,7 +19,7 @@ class Api::V1::UrlsController < ApplicationController
             @url.update_attribute(:click_count, @url.click_count + 1)
             redirect_to @url.long_url
         else
-            render "not_found"
+            render json: {error: "not_found"}, status: 400 
         end
       end
       private
